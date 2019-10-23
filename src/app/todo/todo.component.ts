@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  todoTasks: string[] = ['Learn Angular', 'Go to Gym'];
-  constructor() { }
+  todoTasks: string[] = [];
+  constructor() {
+    this.todoTasks.push('Learn Angular');
+    this.todoTasks.push('Go to Gym');
+   }
 
   ngOnInit() {
   }

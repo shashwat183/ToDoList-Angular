@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoneComponent implements OnInit {
 
-  doneTasks: string[] = ['Wash Clothes', 'Buy Groceries'];
-  constructor() { }
+  doneTasks: string[] = [];
+  constructor() {
+    this.doneTasks.push('Wash Clothes');
+    this.doneTasks.push('Buy Groceries');
+  }
 
   ngOnInit() {
   }
