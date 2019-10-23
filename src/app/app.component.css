@@ -1,0 +1,14 @@
+h1 {
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+  }
+
+.title-container {
+    /*background-color: blue;*/
+    text-align: center;
+}
+
+.col-lg-6 {
+  text-align: center;
+}
