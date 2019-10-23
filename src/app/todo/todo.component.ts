@@ -11,6 +11,7 @@ export class TodoComponent implements OnInit {
   constructor() {
     this.todoTasks.push('Learn Angular');
     this.todoTasks.push('Go to Gym');
+    this.todoTasks.push('Clean Kitchen')
    }
 
   ngOnInit() {
