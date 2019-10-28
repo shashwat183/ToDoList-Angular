@@ -1,3 +1,4 @@
+import { DoneTasksService } from './../done-tasks.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class DoneComponent implements OnInit {
 
   doneTasks: string[] = [];
-  constructor() {
-    this.doneTasks.push('Wash Clothes');
-    this.doneTasks.push('Buy Groceries');
+  constructor(private doneTasksService: DoneTasksService) {
+    this.doneTasks = this.doneTasksService.getDoneTasks();
   }
 
   ngOnInit() {

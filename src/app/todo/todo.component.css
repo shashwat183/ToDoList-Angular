@@ -1,5 +1,9 @@
-ul {
+.list-group {
     list-style-type: none;
     width: 70%;
     margin: auto;
   }
+
+h3 {
+  padding-top: 4%;
+}
