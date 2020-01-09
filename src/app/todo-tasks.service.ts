@@ -16,7 +16,7 @@ export class TodoTasksService {
   }
 
   addTodoTask(task: string) {
-    this.todoTasks.push(task);
+    this.todoTasks.unshift(task);
   }
 
   removeTodoTask(task: string) {

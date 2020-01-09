@@ -1,6 +1,6 @@
 <h3>Done</h3>
 <div class="list-group">
-    <button type="button" class="list-group-item list-group-item-action" *ngFor="let task of doneTasks">
+    <button type="button" class="list-group-item list-group-item-action" *ngFor="let task of doneTasks" (click)="onClick($event)">
         {{ task }}
     </button>
 </div>
