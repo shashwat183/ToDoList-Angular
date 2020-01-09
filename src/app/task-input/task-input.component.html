@@ -1,4 +1,7 @@
 <div class="form-group">
         <!-- <label for="tasksInput">Enter todo tasks here</label> -->
-        <input type="text" class="form-control" id="tasksInput" placeholder="Enter To Do Task">
+        <form #form = "ngForm" (ngSubmit)="onSubmit(form)" class="input-form">
+                <input type="text" name="new_task" class="form-control form-input" id="tasksInput" placeholder="Enter To Do Task" style="float: left" ngModel>
+                <button type="submit" class="btn btn-primary" style="float: right">Submit</button> 
+        </form>
 </div>

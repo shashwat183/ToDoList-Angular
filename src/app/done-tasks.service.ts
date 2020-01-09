@@ -16,7 +16,7 @@ export class DoneTasksService {
   }
 
   addDoneTask(task: string) {
-    this.doneTasks.push(task);
+    this.doneTasks.unshift(task);
   }
 
   removeDoneTask(task: string) {
