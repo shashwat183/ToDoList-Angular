@@ -1,6 +1,7 @@
-import { DoneTasksService } from './../done-tasks.service';
-import { TodoTasksService } from './../todo-tasks.service';
+import { SharedService } from './../shared.service';
+import { TasksApiService } from './../services/tasks-api.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-done',
@@ -10,18 +11,34 @@ import { Component, OnInit } from '@angular/core';
 export class DoneComponent implements OnInit {
 
   doneTasks: string[] = [];
-  constructor(private todoTasksService: TodoTasksService, private doneTasksService: DoneTasksService) {
-    this.doneTasks = this.doneTasksService.getDoneTasks();
+  updateSubsciption: Subscription;
+  constructor(private tasksService: TasksApiService, private sharedService: SharedService) {
+    this.updateSubsciption = this.sharedService.getDoneUpdate().subscribe(() => this.getDoneTasks());
   }
 
   ngOnInit() {
+    this.getDoneTasks();
+  }
+
+  getDoneTasks() {
+    this.doneTasks = [];
+    this.tasksService.getDoneTasks()
+    .subscribe(data => this.extractTaskNameFromList(data));
+    console.log(this.doneTasks);
+  }
+
+  private extractTaskNameFromList(data: []) {
+    // tslint:disable-next-line: prefer-const
+    for (let task of data) {
+      // tslint:disable-next-line: no-string-literal
+      this.doneTasks.push(task['_id']);
+    }
   }
 
   onClick($event) {
     // const index = this.todoTasks.indexOf($event.target.innerText);
     // this.todoTasks.splice(index, 1);
-    this.doneTasksService.removeDoneTask($event.target.innerText);
-    this.todoTasksService.addTodoTask($event.target.innerText);
+    this.tasksService.deleteTask($event.target.innerText).subscribe(() => this.getDoneTasks());
   }
 
 }

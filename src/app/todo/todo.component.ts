@@ -1,8 +1,11 @@
-import { DoneTasksService } from './../done-tasks.service';
-import { TodoTasksService } from './../todo-tasks.service';
+import { SharedService } from './../shared.service';
+import { DoneComponent } from './../done/done.component';
+import { Task } from './../tasks/task.model';
+import { TasksApiService } from './../services/tasks-api.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-@Component({
+@Component({ 
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
@@ -10,18 +13,42 @@ import { Component, OnInit } from '@angular/core';
 export class TodoComponent implements OnInit {
 
   todoTasks: string[] = [];
-  constructor(private todoTasksService: TodoTasksService, private doneTasksService: DoneTasksService) {
-    this.todoTasks = todoTasksService.getTodoTasks();
+  updateSubsciption: Subscription;
+  constructor(private tasksService: TasksApiService, private sharedService: SharedService) {
+    this.updateSubsciption = this.sharedService.getTodoUpdate().subscribe(() => {
+      this.getTasks();
+      this.sharedService.updateDoneComponent();
+    });
    }
 
   ngOnInit() {
+    this.getTasks();
+  }
+
+  getTasks() {
+    this.todoTasks = [];
+    this.tasksService.getToDoTasks()
+    .subscribe(data => this.extractTaskNameFromList(data));
+  }
+
+  private extractTaskNameFromList(data) {
+    // tslint:disable-next-line: prefer-const
+    for (let task of data) {
+      // tslint:disable-next-line: no-string-literal
+      this.todoTasks.push(task['_id']);
+    }
   }
 
   onClick($event) {
-    // const index = this.todoTasks.indexOf($event.target.innerText);
-    // this.todoTasks.splice(index, 1);
-    this.todoTasksService.removeTodoTask($event.target.innerText);
-    this.doneTasksService.addDoneTask($event.target.innerText);
+    const index = this.todoTasks.indexOf($event.target.innerText);
+    this.todoTasks.splice(index, 1);
+    this.tasksService.updateTask($event.target.innerText, 'Done').subscribe(() => {
+      this.getTasks();
+      this.sharedService.updateDoneComponent();
+    });
+    // this.tasksService.getToDoTasks()
+    // .subscribe(data => this.extractTaskNameFromList(data));
+    // this.doneTasksService.addDoneTask($event.target.innerText);
   }
 
 }
