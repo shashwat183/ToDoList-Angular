@@ -1,4 +1,5 @@
-import { TodoTasksService } from './../todo-tasks.service';
+import { SharedService } from './../shared.service';
+import { TasksApiService } from './../services/tasks-api.service';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 
@@ -9,13 +10,16 @@ import {NgForm} from '@angular/forms';
 })
 export class TaskInputComponent implements OnInit {
 
-  constructor(private todoTaskService: TodoTasksService) { }
+  constructor(private taskService: TasksApiService, private sharedService: SharedService) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
     const taskInputName = 'new_task';
-    this.todoTaskService.addTodoTask(form.value[taskInputName]);
+    this.taskService.addTask(form.value[taskInputName]).subscribe(() => {
+      this.sharedService.updateTodoComponent();
+      form.reset();
+    });
   }
 }
