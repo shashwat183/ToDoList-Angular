@@ -1,6 +1,5 @@
 import { SharedService } from './../shared.service';
 import { DoneComponent } from './../done/done.component';
-import { Task } from './../tasks/task.model';
 import { TasksApiService } from './../services/tasks-api.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
