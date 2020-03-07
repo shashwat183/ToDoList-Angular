@@ -9,13 +9,21 @@ import { TodoComponent } from './todo/todo.component';
 import { DoneComponent } from './done/done.component';
 import { TaskInputComponent } from './task-input/task-input.component';
 import { FormsModule } from '@angular/forms';
+import { TasksComponent } from './tasks/tasks.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
     DoneComponent,
-    TaskInputComponent
+    TaskInputComponent,
+    TasksComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
