@@ -24,7 +24,6 @@ export class DoneComponent implements OnInit {
     this.doneTasks = [];
     this.tasksService.getDoneTasks()
     .subscribe(data => this.extractTaskNameFromList(data));
-    console.log(this.doneTasks);
   }
 
   private extractTaskNameFromList(data: []) {
