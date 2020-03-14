@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from './../env';
+import { API_URL } from '../../env';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 

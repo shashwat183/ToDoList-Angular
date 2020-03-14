@@ -1,6 +1,6 @@
-import { googleClientId, fbAppId } from './secrets';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TasksApiService } from './services/tasks-api.service';
+import { googleClientId, fbAppId } from './secrets';
+import { TasksApiService } from './services/tasks-api/tasks-api.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

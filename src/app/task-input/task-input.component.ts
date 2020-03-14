@@ -1,5 +1,5 @@
 import { SharedService } from './../shared.service';
-import { TasksApiService } from './../services/tasks-api.service';
+import { TasksApiService } from '../services/tasks-api/tasks-api.service';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 

@@ -30,6 +30,10 @@ export class HomeComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
       console.log(this.user);
+      if (this.user != null) {
+        this.authService.signOut();
+        this.user = null;
+      }
     });
   }
 
