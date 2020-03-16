@@ -34,7 +34,7 @@ export class TodoComponent implements OnInit {
     // tslint:disable-next-line: prefer-const
     for (let task of data['data']) {
       // tslint:disable-next-line: no-string-literal
-      this.todoTasks.push(task['_id']);
+      this.todoTasks.push(task['task_name']);
     }
   }
 

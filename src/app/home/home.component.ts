@@ -1,3 +1,4 @@
+import { ApiAuthService } from './../services/api-auth/api-auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
@@ -23,40 +24,24 @@ export class HomeComponent implements OnInit {
       )
   });
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private apiAuthService: ApiAuthService) { }
 
   ngOnInit() {
-      this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log(this.user);
-      if (this.user != null) {
-        this.authService.signOut();
-        this.user = null;
-      }
-    });
+      this.apiAuthService.subscribeToSocialAuth();
   }
 
   onSubmit(buttonType: string) {
-    if (this.loginForm.invalid) {
-      this.invalidData = true;
-      return;
-    }
+    // if (this.loginForm.invalid) {
+    //   this.invalidData = true;
+    //   return;
+    // }
     if (buttonType === 'google') {
-      this.signInWithGoogle();
+      this.apiAuthService.signInWithGoogle();
     }
     if (buttonType === 'facebook') {
-      this.signInWithFb();
+      this.apiAuthService.signInWithFb();
     }
-    this.router.navigate(['/tasks']);
-  }
-
-  signInWithGoogle() {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  signInWithFb() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    // this.router.navigate(['/tasks']);
   }
 
 }

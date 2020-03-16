@@ -30,7 +30,7 @@ export class DoneComponent implements OnInit {
     // tslint:disable-next-line: prefer-const
     for (let task of data['data']) {
       // tslint:disable-next-line: no-string-literal
-      this.doneTasks.push(task['_id']);
+      this.doneTasks.push(task['task_name']);
     }
   }
 

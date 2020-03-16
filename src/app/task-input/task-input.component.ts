@@ -16,8 +16,9 @@ export class TaskInputComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const taskInputName = 'new_task';
-    this.taskService.addTask(form.value[taskInputName]).subscribe(() => {
+    let taskName = form.value['new_task'];
+    taskName = taskName.trim();
+    this.taskService.addTask(taskName).subscribe(() => {
       this.sharedService.updateTodoComponent();
       form.reset();
     });
