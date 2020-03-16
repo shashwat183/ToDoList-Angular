@@ -1,3 +1,4 @@
+import { ApiAuthService } from './../services/api-auth/api-auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiAuthService: ApiAuthService) { }
 
   ngOnInit() {
+  }
+
+  checkAuthenticated(): boolean {
+    return this.apiAuthService.isAuthenticated();
+  }
+
+  userLogout(): void {
+    this.apiAuthService.logout();
   }
 
 }

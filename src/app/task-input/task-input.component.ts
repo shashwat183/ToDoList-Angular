@@ -1,5 +1,5 @@
 import { SharedService } from './../shared.service';
-import { TasksApiService } from './../services/tasks-api.service';
+import { TasksApiService } from '../services/tasks-api/tasks-api.service';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 
@@ -16,8 +16,9 @@ export class TaskInputComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const taskInputName = 'new_task';
-    this.taskService.addTask(form.value[taskInputName]).subscribe(() => {
+    let taskName = form.value['new_task'];
+    taskName = taskName.trim();
+    this.taskService.addTask(taskName).subscribe(() => {
       this.sharedService.updateTodoComponent();
       form.reset();
     });

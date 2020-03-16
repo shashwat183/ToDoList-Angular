@@ -1,5 +1,5 @@
 import { SharedService } from './../shared.service';
-import { TasksApiService } from './../services/tasks-api.service';
+import { TasksApiService } from '../services/tasks-api/tasks-api.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -28,9 +28,9 @@ export class DoneComponent implements OnInit {
 
   private extractTaskNameFromList(data: []) {
     // tslint:disable-next-line: prefer-const
-    for (let task of data) {
+    for (let task of data['data']) {
       // tslint:disable-next-line: no-string-literal
-      this.doneTasks.push(task['_id']);
+      this.doneTasks.push(task['task_name']);
     }
   }
 
