@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { googleClientId, fbAppId } from './secrets';
+import { googleClientId, fbAppId } from './clients';
 import { TasksApiService } from './services/tasks-api/tasks-api.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
