@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { googleClientId, fbAppId } from './secrets';
+import { googleClientId, fbAppId } from './clients';
 import { TasksApiService } from './services/tasks-api/tasks-api.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,6 +15,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
 
 const config = new AuthServiceConfig([
   {
@@ -40,7 +41,8 @@ export function provideConfig() {
     TasksComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
