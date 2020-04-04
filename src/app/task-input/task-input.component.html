@@ -1,7 +1,8 @@
-<div class="form-group">
-        <!-- <label for="tasksInput">Enter todo tasks here</label> -->
-        <form #form = "ngForm" (ngSubmit)="onSubmit(form)" class="input-form">
-                <input type="text" name="new_task" class="form-control form-input" id="tasksInput" placeholder="Enter To Do Task" style="float: left" ngModel>
-                <button type="submit" class="btn btn-primary" style="float: right">Submit</button> 
-        </form>
-</div>
+<form #form = "ngForm" (ngSubmit)="onSubmit(form)" class="form-inline">
+        <div class="form-group col-xl-12 my-5 justify-content-center">
+        <!-- style="float: left; margin-right: 10px; margin-bottom: 10px" -->
+        <input type="text" name="new_task" class="form-control col-md-8 mr-2 mb-2" id="tasksInput" placeholder="Enter To Do Task" ngModel>
+        <!-- style="float: right; margin-bottom: 10px" -->
+        <button type="submit" class="btn btn-primary mb-2">Submit</button> 
+        </div>
+</form>
