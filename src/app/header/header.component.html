@@ -1,29 +1,30 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Todo List App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav ml-auto" *ngIf="checkAuthenticated(); else loginHeader">
-            <li class="nav-item active">
-              <a class="nav-link" href="tasks">Tasks</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" (click)="userLogout()">Signout</a>
-            </li>
-          </ul>
-          <ng-template #loginHeader>
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
-              </li>
-            </ul>
-          </ng-template>
-        </div>
-      </nav>
+  <a class="navbar-brand" href="#">Todo List App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto" *ngIf="checkAuthenticated(); else loginHeader">
+      <li class="nav-item active">
+        <a class="nav-link" href="tasks">Tasks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="userLogout()">Signout</a>
+      </li>
+    </ul>
+    <ng-template #loginHeader>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+</nav>
