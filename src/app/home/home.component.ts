@@ -15,9 +15,8 @@ export class HomeComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
   loginForm = new FormGroup({
-    emailAddress: new FormControl(null,
-      [Validators.email,
-        Validators.required]
+    username: new FormControl(null,
+        Validators.required
       ),
     password: new FormControl(null,
       Validators.required
@@ -31,17 +30,33 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(buttonType: string) {
-    // if (this.loginForm.invalid) {
-    //   this.invalidData = true;
-    //   return;
-    // }
     if (buttonType === 'google') {
       this.apiAuthService.signInWithGoogle();
+      return;
     }
     if (buttonType === 'facebook') {
       this.apiAuthService.signInWithFb();
+      return;
     }
-    // this.router.navigate(['/tasks']);
+    if (buttonType === 'register') {
+      this.router.navigate(['register']);
+      return;
+    }
+    if (buttonType === 'custom' && this.loginForm.invalid) {
+      this.invalidData = true;
+      return;
+    } else {
+      const loginData = {
+        username: this.loginForm.controls.username.value,
+        password: this.loginForm.controls.password.value
+      };
+      this.apiAuthService.customLogin(loginData).subscribe(data => {
+        sessionStorage.setItem('userToken', data.token);
+        this.router.navigate(['tasks']);
+      }, error => {
+        this.invalidData = true;
+      });
+    }
   }
 
 }

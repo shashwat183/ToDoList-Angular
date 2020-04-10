@@ -25,6 +25,19 @@ export class ApiAuthService {
     return this.http.get<any>(`${API_URL}/login/google`, httpOptions);
   }
 
+  customLogin(loginData): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Basic ' + btoa(`${loginData.username}:${loginData.password}`)
+      })
+    };
+    return this.http.get<any>(`${API_URL}/login`, httpOptions);
+  }
+
+  register(userData): Observable<any> {
+    return this.http.post<any>(`${API_URL}/register`, userData);
+  }
+
   isAuthenticated(): boolean {
     const token = sessionStorage.getItem('userToken');
     return !jwtHelper.isTokenExpired(token);
@@ -46,7 +59,6 @@ export class ApiAuthService {
   subscribeToSocialAuth(): void {
     this.authService.authState.subscribe((user) => {
       if (user != null) {
-        console.log(user);
         this.login(user.idToken, user.provider);
       }
     });
@@ -55,7 +67,7 @@ export class ApiAuthService {
   private login(idToken: string, provider: string): void {
     if (provider === 'GOOGLE') {
       this.googleLogin(idToken).subscribe(data => {
-        sessionStorage.setItem('userToken', data['token']);
+        sessionStorage.setItem('userToken', data.token);
         this.router.navigate(['tasks']);
       });
     }
